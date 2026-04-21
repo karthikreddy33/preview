@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite V2 | AI Loan Intelligence Exhibition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ====== DESIGN SYSTEM & VARIABLES ====== */
+        :root {
+            /* Light Theme Tokens */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --bg-nav: rgba(255, 255, 255, 0.8);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            
+            --border: #e2e8f0;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            
+            --space-hero: 8rem;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Tokens */
+            --bg-body: #020617;
+            --bg-card: #0f172a;
+            --bg-card-hover: #1e293b;
+            --bg-nav: rgba(2, 6, 23, 0.8);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --accent-primary: #818cf8;
+            --accent-secondary: #a78bfa;
+            --accent-glow: rgba(129, 140, 248, 0.2);
+            
+            --border: #1e293b;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+        }
+
+        /* ====== BASE STYLES ====== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ====== HEADER & NAVIGATION ====== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            padding: 9rem 0 5rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 70%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-primary);
+            border-radius: 999px;
+            color: var(--accent-primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== SECTION HEADERS ====== */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+        }
+
+        /* ====== CARDS & GRID ====== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* ====== ANIMATIONS ====== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* ====== SCROLL PROGRESS BAR ====== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            z-index: 2000;
+        }
+
+        .bg-alt {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ====== ARCHITECTURE GRID ====== */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .arch-item {
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-primary);
+            background: var(--bg-card);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            transition: var(--transition);
+        }
+
+        .arch-item:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .arch-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        /* ====== ALGORITHM SECTION ====== */
+        .alg-section {
+            background: var(--bg-body);
+        }
+
+        .alg-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .alg-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge-basic { background: #10b98120; color: #10b981; border: 1px solid #10b98140; }
+        .badge-advanced { background: #f59e0b20; color: #f59e0b; border: 1px solid #f59e0b40; }
+        .badge-expert { background: #ef444420; color: #ef4444; border: 1px solid #ef444440; }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .alg-concept {
+            background: var(--bg-card-hover);
+            padding: 1.25rem;
+            border-radius: var(--radius-sm);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--text-muted);
+        }
+
+        .alg-concept h5 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .alg-concept p {
+            font-size: 0.875rem !important;
+            font-style: italic;
+        }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+    <div class="scroll-progress" id="myBar"></div>
+    <header>
+        <div class="container nav-content">
+            <a href="#" class="logo">ELITE V2</a>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container text-center">
+                <span class="hero-badge">Exhibition Mode</span>
+                <h1>Automated Loan<br><span class="gradient-text">Intelligence System</span></h1>
+                <p>A multi-agentic, microservices-driven platform for enterprise-grade credit analysis, risk assessment, and explainable AI.</p>
+            </div>
+        </section>
+
+        <section id="problem" class="container">
+            <div class="section-header">
+                <span class="hero-badge" style="margin-bottom: 0.5rem;">The Challenge</span>
+                <h2>The Traditional Bottleneck</h2>
+                <p>Legacy loan processing systems are failing modern finance. We identified three critical failure points.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">⏳</span>
+                    <h3>Inefficient Velocity</h3>
+                    <p>Manual underwriting takes days. In a digital-first world, customers expect decisions in seconds, not business weeks.</p>
+                    <div class="panel-accent" style="margin-top: 1rem; font-size: 0.8rem; color: var(--accent-primary);">Traditional Average: 3-5 Days</div>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🧠</span>
+                    <h3>Cognitive Bias</h3>
+                    <p>Human decisions are influenced by fatigue, mood, and subconscious bias. This leads to inconsistent and unfair credit denials.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌑</span>
+                    <h3>The Black Box</h3>
+                    <p>Traditional "scorecard" systems often reject applicants without providing a granular, data-driven explanation of <i>why</i>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="who" class="bg-alt">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge" style="margin-bottom: 0.5rem;">The Ecosystem</span>
+                    <h2>Who Powers This?</h2>
+                    <p>Elite V2 is designed for the entire financial value chain.</p>
+                </div>
+                <div class="grid">
+                    <div class="card">
+                        <span class="card-icon">🏛️</span>
+                        <h3>Enterprise Banks</h3>
+                        <p>Admins who manage multi-tenant datasets, deploy production models, and monitor portfolio-wide risk metrics.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">👔</span>
+                        <h3>Loan Officers</h3>
+                        <p>Specialists who review AI suggestions, examine fraud flags, and finalize decisions with confidence.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">💻</span>
+                        <h3>Data Scientists</h3>
+                        <p>Engineers who upload historical data, trigger AutoML pipelines, and verify model integrity (ROC-AUC).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-start" class="container">
+            <div class="section-header" style="max-width: 800px;">
+                <span class="hero-badge" style="margin-bottom: 0.5rem;">Technical Deep Dive</span>
+                <h2>The Architecture of Trust</h2>
+                <p>We built this system using a <b>Microservices Mesh</b>. Instead of one heavy application, we have 10 specialized agents working in perfect harmony.</p>
+            </div>
+            
+        <section id="algorithms" class="alg-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="hero-badge" style="margin-bottom: 0.5rem;">AI Models</span>
+                    <h2>The Machine Learning Brains</h2>
+                    <p>We don't trust just one "expert." Our system runs a competition between four distinct mathematical brains.</p>
+                </div>
+
+                <!-- Model 1: Logistic Regression -->
+                <div class="alg-card">
+                    <div class="alg-meta">
+                        <span class="badge badge-basic">Level: Basic</span>
+                        <span class="badge" style="background: #6366f120; color: var(--accent-primary);">Type: Classification</span>
+                    </div>
+                    <h3>1. Logistic Regression</h3>
+                    <p>The foundation of automated decisioning. Despite its name, it's used for <b>classification</b> (Yes/No answers).</p>
+                    
+                    <div class="alg-concept">
+                        <h5>Simple Analogy</h5>
+                        <p>"Imagine drawing a straight line through a field of dots. Points on the left are rejections, points on the right are approvals. It's like finding the cleanest way to divide a group based on their stats."</p>
+                    </div>
+
+                    <p><b>Technical Detail:</b> It uses the <b>Sigmoid Function</b> to map any real-valued number into a value between 0 and 1. If the score is > 0.5, the loan is approved. It weighs features like 'Income' versus 'Debt' linearly.</p>
+                </div>
+
+                <!-- Model 2: Random Forest -->
+                <div class="alg-card">
+                    <div class="alg-meta">
+                        <span class="badge badge-advanced">Level: Advanced</span>
+                        <span class="badge" style="background: #14b8a620; color: #14b8a6;">Type: Ensemble</span>
+                    </div>
+                    <h3>2. Random Forest</h3>
+                    <p>A "Wisdom of the Crowds" approach. It uses hundreds of individual <b>Decision Trees</b> to vote on the outcome.</p>
+                    
+                    <div class="alg-concept">
+                        <h5>Simple Analogy</h5>
+                        <p>"Think of it as asking 100 different loan officers a series of Yes/No questions. One might focus on income, another on credit age. We take the majority vote of the whole crowd to eliminate individual mistakes."</p>
+                    </div>
+
+                    <p><b>Technical Detail:</b> Uses <b>Bagging</b> (Bootstrap Aggregating) to reduce variance and prevent 'Overfitting' (memorizing data instead of learning). Highly robust against missing data.</p>
+                </div>
+
+                <!-- Model 3: XGBoost -->
+                <div class="alg-card">
+                    <div class="alg-meta">
+                        <span class="badge badge-advanced">Level: Advanced</span>
+                        <span class="badge" style="background: #f43f5e20; color: #f43f5e;">Type: Gradient Boosting</span>
+                    </div>
+                    <h3>3. XGBoost</h3>
+                    <p>The current gold standard for spreadsheet-style data. It's like an elite team that learns from its own failures.</p>
+                    
+                    <div class="alg-concept">
+                        <h5>Simple Analogy</h5>
+                        <p>"Imagine a group of students taking a test. The second student focuses only on the questions the first student got wrong. The third student focuses on what the second got wrong. They get smarter every turn."</p>
+                    </div>
+
+                    <p><b>Technical Detail:</b> Uses <b>Gradient Descent</b> to minimize error. It builds trees sequentially, where each new tree corrects the 'residuals' of the previous ones. It is incredibly efficient and fast.</p>
+                </div>
+
+                <!-- Model 4: Neural Network -->
+                <div class="alg-card">
+                    <div class="alg-meta">
+                        <span class="badge badge-expert">Level: Expert</span>
+                        <span class="badge" style="background: #8b5cf620; color: #8b5cf6;">Type: Deep Learning</span>
+                    </div>
+                    <h3>4. Multi-Layer Perceptron (MLP)</h3>
+                    <p>A system inspired by the human brain. It finds hidden, non-linear patterns that humans might never see.</p>
+                    
+                    <div class="alg-concept">
+                        <h5>Simple Analogy</h5>
+                        <p>"Patterns within patterns. It doesn't just look at Income; it looks at how Income interacts with Credit Age and Debt in thousands of tiny, invisible ways, passing information through layers of digital 'neurons'."</p>
+                    </div>
+
+                    <p><b>Technical Detail:</b> A 3-layer architecture (128 → 64 → 1) built with <b>PyTorch</b>. It uses ReLU activation functions to handle complex relationships and Dropout layers to maintain accuracy on new applicants.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explainable AI Section -->
+        <section id="xai" class="container">
+            <div class="section-header">
+                <span class="hero-badge" style="margin-bottom: 0.5rem;">Trust & Clarity</span>
+                <h2>Explainable AI (XAI)</h2>
+                <p>A "Yes" or "No" isn't enough. In bank regulation, we must explain <i>why</i>.</p>
+            </div>
+            <div class="grid">
+                <div class="card" style="border-left: 8px solid var(--accent-primary);">
+                    <h3>SHAP Values</h3>
+                    <p>We use <b>SHapley Additive exPlanations</b>. It's a method from game theory that assigns a 'contribution' score to every single feature.</p>
+                    <div class="panel-accent" style="margin-top: 1rem; padding: 1rem; background: var(--bg-card-hover); border-radius: var(--radius-sm);">
+                        <p style="font-size: 0.85rem; color: var(--text-primary);"><b>Example:</b> "This loan was rejected. High <b>Loan Amount</b> pulled the score down by 0.3, while <b>Good Income</b> pushed it up by 0.1, but not enough to offset the risk."</p>
+                    </div>
+                </div>
+                <div class="card" style="border-left: 8px solid #ef4444;">
+                    <h3>Fraud Detection</h3>
+                    <p>Using <b>Isolation Forest</b>, we identify 'mathematically weird' applications that don't fit the pattern of normal human behavior, flagging them for human review.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Project Originate. Engineered for transparency, built for scale.</p>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.75rem;">Elite V2 AI Loan Approval | Advanced Agentic Coding Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        }
+
+        // SCROLL REVEAL LOGIC
+        const revealElements = document.querySelectorAll('.card, .arch-item, .alg-card, .section-header');
+        
+        // Add reveal classes programmatically
+        revealElements.forEach((el, i) => {
+            el.classList.add('reveal');
+            if (i % 2 === 0) el.classList.add('delay-1');
+            else el.classList.add('delay-2');
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // SCROLL PROGRESS BAR
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        };
+    </script>
+</body>
+</html>
